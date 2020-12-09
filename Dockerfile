@@ -21,6 +21,8 @@ RUN apk --no-cache add librdkafka-dev \
     php-curl \
     php-bz2 \
     php-exif \
+    php-calendar \
+    php-intl \
     php-pgsql \
     php-sqlite3 \
     php-json \
@@ -36,6 +38,8 @@ RUN apk --no-cache add librdkafka-dev \
     php-phar \
     php-pdo \
     php-pdo_pgsql \
+    php-sockets \
+    php70-ctype \
     gcc \
     musl-dev \
     pcre2-dev \
