@@ -5,12 +5,13 @@ LABEL Maintainer="Zona Budi Prastyo <zona.budi11@gmail.com>"
 ADD https://dl.bintray.com/php-alpine/key/php-alpine.rsa.pub /etc/apk/keys/php-alpine.rsa.pub
 
 # make sure you can use HTTPS
-RUN apk --update add ca-certificates
+RUN apk --update add ca-certificates busybox-suid
 
 RUN echo "https://dl.bintray.com/php-alpine/v3.12/php-7.4" >> /etc/apk/repositories
 # Install packages
 RUN apk --no-cache add librdkafka-dev \
     git \
+    wget \
     make \
     autoconf \
     php \
@@ -62,14 +63,11 @@ COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 # Setup document root
 RUN mkdir -p /var/www/html
 
-# Make sure files/folders needed by the processes are accessable when they run under the nobody user
-RUN chown -R nobody.nobody /var/www/html && \
-  chown -R nobody.nobody /run && \
-  chown -R nobody.nobody /var/lib/nginx && \
-  chown -R nobody.nobody /var/log/nginx
-
-# Switch to use a non-root user from here on
-USER nobody
+# Give Access to www-data
+RUN set -x ; \
+  addgroup -g 82 -S www-data ; \
+  adduser -u 82 -D -S -G www-data www-data && exit 0 ; exit 1
+RUN chown -R www-data:www-data /var/www/html
 
 # Expose the port nginx is reachable on
 EXPOSE 80
