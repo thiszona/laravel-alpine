@@ -34,6 +34,8 @@ RUN apk --no-cache add librdkafka-dev \
     php-xsl \
     php-dev \
     php-phar \
+    php-pdo \
+    php-pdo_pgsql \
     gcc \
     musl-dev \
     pcre2-dev \
