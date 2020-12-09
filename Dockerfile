@@ -30,7 +30,6 @@ RUN apk --no-cache add librdkafka-dev \
     php-mbstring \
     php-bcmath \
     php-redis \
-    php-xdebug \
     php-zip \
     php-gd \
     php-xsl \
@@ -39,7 +38,7 @@ RUN apk --no-cache add librdkafka-dev \
     php-pdo \
     php-pdo_pgsql \
     php-sockets \
-    php70-ctype \
+    php-ctype \
     gcc \
     musl-dev \
     pcre2-dev \
