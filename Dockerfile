@@ -5,7 +5,11 @@ LABEL Maintainer="Zona Budi Prastyo <zona.budi11@gmail.com>"
 ADD https://dl.bintray.com/php-alpine/key/php-alpine.rsa.pub /etc/apk/keys/php-alpine.rsa.pub
 
 # make sure you can use HTTPS
-RUN apk --update add ca-certificates busybox-suid
+RUN apk --update add ca-certificates busybox-suid tzdata
+RUN cp /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
+RUN echo "Asia/Jakarta" >  /etc/timezone
+RUN date
+RUN apk del tzdata
 
 RUN echo "https://dl.bintray.com/php-alpine/v3.12/php-7.4" >> /etc/apk/repositories
 # Install packages
