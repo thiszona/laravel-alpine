@@ -47,9 +47,7 @@ RUN apk --no-cache add librdkafka-dev \
     pcre2-dev \
     nginx supervisor curl
 
-RUN pecl install rdkafka \
-        sqlsrv \
-        pdo_sqlsrv \
+RUN pecl install rdkafka 
 # https://github.com/codecasts/php-alpine/issues/21
 RUN ln -s /usr/bin/php7 /usr/bin/php
 
