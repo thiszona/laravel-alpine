@@ -36,7 +36,7 @@ RUN apk --no-cache add librdkafka-dev \
     php-phar \
     php-pdo \
     php-pdo_pgsql \
-    pdo_mysql \
+    php-pdo_mysql \
     php-xmlreader \
     php-ctype \
     php-iconv \
@@ -47,8 +47,9 @@ RUN apk --no-cache add librdkafka-dev \
     pcre2-dev \
     nginx supervisor curl
 
-RUN pecl install rdkafka
-
+RUN pecl install rdkafka \
+        sqlsrv \
+        pdo_sqlsrv \
 # https://github.com/codecasts/php-alpine/issues/21
 RUN ln -s /usr/bin/php7 /usr/bin/php
 
